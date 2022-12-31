@@ -1,0 +1,25 @@
+@import "./reset.css";
+@import "./variables.css";
+@import "./layout.css";
+
+/* --------- S 项目滚动条样式 ---------- */
+::-webkit-scrollbar {
+  opacity: 0.3;
+  -webkit-appearance: none !important;
+  /*滚动条整体样式*/
+  width: 7px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 8px;
+}
+
+::-webkit-scrollbar:hover {
+  width: 10px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  background-color: #cbced41c;
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px #0003;
+}

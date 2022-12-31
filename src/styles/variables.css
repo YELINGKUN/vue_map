@@ -1,0 +1,48 @@
+:root {
+    --nav-bgImgColor: linear-gradient(to right, #13b6ff, #0a83ff);
+    --wrap-max-width: 1300px;
+    --wrap-large-width: 1440px;
+
+    --primary-color: #0f59aa;
+    --primary-light-color: #2c75c5;
+    --primary-light2-color: #4283cb;
+
+    --page-bg-color: #f3f3f3;
+    --border-color: #F5F5F5;
+    --box-shadow-color: #0000001f;
+    --box-shadow: 0 0 8px var(--border-color);
+    --nav-top-color: #c4dfff;
+    --input-color: #cbcbcb;
+
+    --text-color: #7e7e7e;
+    --title-text-color: #000000;
+    --sub-title-text-color: #8D8D8D;
+
+    --text-size: 14px;
+    --title-text-size: 22px;
+    --subtitle-text-size: 15px;
+    --menus-text-size: 18px;
+
+    --menus-line-height: 60px;
+    --form-line-height: 40px;
+
+    --page-height: 38px;
+    --box-space: 12px;
+
+    --large-button-text-size: 20px;
+
+    --step-item-title-size: 18px;
+    --step-item-subTitle-size: 15px;
+
+
+    --small-padding: 10px;
+    --medium-padding: 15px;
+
+
+    --xs-text-size: 12px;
+    --small-text-size: 13px;
+    --medium-text-size: 15px;
+    --large-text-size: 18px;
+}
+
+ 

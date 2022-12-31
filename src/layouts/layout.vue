@@ -9,7 +9,12 @@
         <slot name="aside"> </slot>
       </div>
       <div class="main">
-        <slot name="main"> </slot>
+        <div class="tags">
+          <slot name="tags"> </slot>
+        </div>
+        <div class="content">
+          <slot name="content"> </slot>
+        </div>
       </div>
     </div>
   </div>
@@ -50,13 +55,14 @@ watchEffect(() => {});
 
 <style scoped lang="less">
 .wrapper {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  // overflow-y: auto;
 }
-
-.header,
-.footer {
+// .footer
+.header {
   flex: none;
   height: 60px;
   background-color: #b3c0cf;
@@ -64,20 +70,38 @@ watchEffect(() => {});
 
 .container {
   display: flex;
-  // flex-direction: column;
-  flex: 1;
-}
-
-.aside {
-  flex: none;
-  // width: 220px;
-  // width: 60px;
-  background-color: #d3dce5;
-}
-
-.main {
-  flex: 1;
-  overflow-y: auto;
-  background-color: #e9eef3;
+  overflow-x: hidden; /*x轴禁止滚动*/
+  overflow-y: hidden; /*y轴滚动*/
+  height: 100vh;
+  .aside {
+    flex: none;
+    height: 100vh;
+    // max-width: 220px;
+    // width: 220px; // 60px;
+    background-color: #d3dce5;
+  }
+  .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #ffffff;
+    .tags {
+      // width: 100vw;
+      height: 40px;
+      // margin: 0px 4px;
+      padding: 8px; 
+      // border-radius: 5px;
+      background-color: antiquewhite;
+    }
+    .content {
+      height: calc(100vh - 120px);
+      margin: 8px 8px 8px 8px;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: rgb(251, 251, 251);
+      border: 1px solid gray;
+    }
+  }
 }
 </style>
