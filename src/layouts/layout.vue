@@ -5,13 +5,14 @@
       <slot name="header"> </slot>
     </div>
     <div class="container">
-      <div class="aside">
-        <slot name="aside"> </slot>
-      </div>
+      <!-- <div class="aside"> 的
+      </div> -->
+      <slot name="aside"> </slot>
       <div class="main">
-        <div class="tags">
+        <slot name="tags"> </slot>
+        <!-- <div class="tags">
           <slot name="tags"> </slot>
-        </div>
+        </div> -->
         <div class="content">
           <slot name="content"> </slot>
         </div>

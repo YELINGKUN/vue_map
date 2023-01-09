@@ -1,50 +1,21 @@
+<!-- 侧边栏宽度 收起 宽度60px 展开是200px -->
 <template>
-  <transition name="fade-transform" mode="out-in">
-    <div :style="'width:' + asideWidth + 'px'">
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-        <el-radio-button :label="false">expand</el-radio-button>
-        <el-radio-button :label="true">collapse</el-radio-button>
-      </el-radio-group>
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        :collapse="isCollapse"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item-group>
-            <template #title><span>Group One</span></template>
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title><span>item four</span></template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-          <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon><document /></el-icon>
-          <template #title>Navigator Three</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon><setting /></el-icon>
-          <template #title>Navigator Four</template>
-        </el-menu-item>
-      </el-menu>
+  <div class="menu-wrapper">
+    <el-menu
+      :default-active="activePath"
+      class="el-menu-vertical-demo"
+      :collapse="isCollapse"
+      router
+      popper-effect="dark"
+      @open="handleOpen"
+      @close="handleClose"
+    >
+      <BaseMenuItem :menuData="menuArr"></BaseMenuItem>
+    </el-menu>
+    <div class="btn">
+      <el-icon :size="25" @click="expand"><Expand /></el-icon>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -55,47 +26,79 @@ import {
   Location,
   Setting,
 } from "@element-plus/icons-vue";
+import { useRoute, useRouter } from "vue-router";
+import { useMenu } from "@/store";
+import type { menuType2 } from "@/types";
+const useMenuStore = useMenu();
+const route = useRoute(); //路由对象
+const router = useRouter(); //路由实例
 
-const asideWidth = ref(200);
+// 监听路由
+const activePath = ref("/");
+watch(
+  () => router.currentRoute.value.path,
+  () => {
+    activePath.value = router.currentRoute.value.path;
+  },
+  {
+    immediate: true,
+  }
+);
+
+const asideWidth = ref(60);
 const isCollapse = ref(true);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
-  if (asideWidth.value === 200) {
-    asideWidth.value = 100;
-  } else {
-    asideWidth.value = 200;
-  }
 };
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
-  asideWidth.value = 30;
 };
+
+const expand = () => {
+  if (isCollapse.value) {
+    asideWidth.value = 200;
+  } else {
+    asideWidth.value = 60;
+  }
+  isCollapse.value = !isCollapse.value;
+};
+
+const menuArr = ref<menuType2[]>();
+
+async function init() {
+  // 这边执行useMenuStore 中获取方法
+  menuArr.value = useMenuStore.getMenuData(); 
+}
+
+onMounted(() => {
+  init();
+});
+onUnmounted(() => {
+  
+})
 </script>
 
-<style>
+<style lang="less" scoped>
+.menu-wrapper {
+  // height: 100vh;
+  // background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255);
+    i {
+      cursor: pointer;
+    }
+  }
+}
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
-}
-
-/* fade-transform */
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-  transition: all 0.5s;
-}
-
-/* 可能为enter失效，拆分为 enter-from和enter-to */
-.fade-transform-enter-from {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-.fade-transform-enter-to {
-  opacity: 1;
-  transform: translateX(0px);
-}
-
-.fade-transform-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
 }
 </style>

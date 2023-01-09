@@ -9,16 +9,17 @@ import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 //#endregion
 
+//#region 为 pinia 添加持久化
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+//#endregion
 
 import App from "./App.vue";
 import router from "./router";
 import '@/styles/index.scss';
 import "./assets/main.css";
 
-//#region 为 pinia 添加持久化
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
-//#endregion
+
 
 const app = createApp(App);
 

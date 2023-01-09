@@ -1,14 +1,17 @@
-<!-- 首页 -->
 <template>
-  <div>首页</div>
+  <div>B1</div>
 </template>
 
 <script setup lang="ts">
 import { useRouter, onBeforeRouteUpdate } from "vue-router";
-import { useMenu } from "@/store";
 const router = useRouter();
 const route = useRoute();
-const menuStore = useMenu();
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.about {
+  height: 100%; // 高度一定要设置
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+</style>
