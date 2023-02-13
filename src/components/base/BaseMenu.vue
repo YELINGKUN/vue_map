@@ -61,21 +61,21 @@ const expand = () => {
     asideWidth.value = 60;
   }
   isCollapse.value = !isCollapse.value;
+  useMenuStore.SET_SIDEBARCOLLAPSE(isCollapse.value);
+  console.log("useMenuStore.sideBarCollapse：", useMenuStore.sideBarCollapse);
 };
 
 const menuArr = ref<menuType2[]>();
 
 async function init() {
   // 这边执行useMenuStore 中获取方法
-  menuArr.value = useMenuStore.getMenuData(); 
+  menuArr.value = useMenuStore.getMenuData();
 }
 
 onMounted(() => {
   init();
 });
-onUnmounted(() => {
-  
-})
+onUnmounted(() => {});
 </script>
 
 <style lang="less" scoped>

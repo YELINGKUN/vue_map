@@ -7,12 +7,12 @@
     <div class="container">
       <!-- <div class="aside"> 的
       </div> -->
-      <slot name="aside"> </slot>
+      <slot name="aside"></slot>
       <div class="main">
         <slot name="tags"> </slot>
         <!-- <div class="tags">
           <slot name="tags"> </slot>
-        </div> -->
+        </div> --> 
         <div class="content">
           <slot name="content"> </slot>
         </div>
@@ -71,37 +71,37 @@ watchEffect(() => {});
 
 .container {
   display: flex;
+  flex: 1;
   overflow-x: hidden; /*x轴禁止滚动*/
   overflow-y: hidden; /*y轴滚动*/
   height: 100vh;
   .aside {
-    flex: none;
+    // flex: none;
+    flex-grow: 0;
     height: 100vh;
     // max-width: 220px;
     // width: 220px; // 60px;
     background-color: #d3dce5;
   }
   .main {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    // display: flex;
+    // flex: 1;
+    flex-grow: 1;
     height: 100vh;
     background-color: #ffffff;
-    .tags {
-      // width: 100vw;
+    .tags { 
+      // margin: 30px;
+      width: 100vw;
       height: 40px;
-      // margin: 0px 4px;
-      padding: 8px; 
-      // border-radius: 5px;
-      background-color: antiquewhite;
+      // background-color: rgb(40, 193, 71);
     }
     .content {
       height: calc(100vh - 120px);
-      margin: 8px 8px 8px 8px;
+      margin: 8px;
       padding: 8px;
       border-radius: 5px;
-      background-color: rgb(251, 251, 251);
-      border: 1px solid gray;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(58, 32, 125);
     }
   }
 }

@@ -7,10 +7,13 @@
 
 <script setup lang="ts">
 import { useRouter, onBeforeRouteUpdate } from "vue-router";
+import { useMenu } from "@/store";
 const router = useRouter();
 const route = useRoute();
-
+const useMenuStore = useMenu();
 const go = () => {
+  // 清除 多余的 路由信息
+  useMenuStore.openPages.length = 0;
   router.push("/AppLayout");
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div class="tags-wrapper">
-    <!-- {{ useMenuStore.openPages }}  -->
+  <div class="tags-wrapper" :style="tempTagsWidth2">
+    <!-- {{ useMenuStore.openPages }} -->
     <el-tabs
       v-model="activeTab"
       type="card"
@@ -47,6 +47,27 @@ watch(
   }
 );
 
+// 监听左侧展开栏 设置当前dom宽度
+const tempTagsWidth = ref(0);
+watch(
+  () => useMenuStore.sideBarCollapse,
+  () => {
+    if (useMenuStore.sideBarCollapse) {
+      // 收起了
+      tempTagsWidth.value = 60;
+    } else {
+      tempTagsWidth.value = 200;
+    }
+  },
+  {
+    immediate: true,
+  }
+);
+
+const tempTagsWidth2 = computed(() => {
+  return `width: calc(100vw - ${tempTagsWidth.value})+px;`;
+}); 
+
 const showClosable = computed(() => {
   return useMenuStore.openPages.length > 1 ? true : false;
 });
@@ -78,13 +99,9 @@ onUnmounted(() => {
 watchEffect(() => {});
 </script>
 <style scoped lang="less">
-* {
-  padding: 0%;
-  margin: 0%;
-}
 .tags-wrapper {
-  width: calc(100vw - 60px);
+  // width: calc(100vw - tempTagsWidth+``);
   height: 40px;
-  // background-color: aqua;
+  background-color: aqua;
 }
 </style>

@@ -1,5 +1,6 @@
 <!-- 首页 -->
 <template>
+
   <layout>
     <template #header> <BaseHeader> </BaseHeader> </template>
     <template #aside>

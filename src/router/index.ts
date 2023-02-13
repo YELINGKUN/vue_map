@@ -3,6 +3,7 @@ import { useMenu } from "@/store";
 import AppLayout from "../views/AppLayout.vue";
 import A from "./module/A";
 import B from "./module/B";
+import OlMap from "./module/Map";
 import type { tagsViewType } from "@/types";
 
 // https://zhuanlan.zhihu.com/p/420334846
@@ -10,13 +11,14 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: "/",
-      alias: "/login",
+      path: "/", 
+      alias:"/login",
       name: "login",
       component: () => import("@/views/login/login.vue"),
     },
     {
       path: "/AppLayout",
+      name: "AppLayout",
       redirect: `/home`,
       meta: {
         title: "是布局页"
@@ -32,7 +34,8 @@ const router = createRouter({
           component: () => import('@/views/Home.vue')
         },
         ...A,
-        ...B
+        ...B,
+        ...OlMap
       ],
     },
     {

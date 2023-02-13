@@ -47,8 +47,6 @@ export const useMenu = defineStore("menu", {
             // 清除全部
             this.openPages = [];
         },
-
-
         // 是否显示侧边栏 是否展开
         SHOW_SIDEBAR() {
             this.sideBarCollapse = true;
@@ -56,7 +54,9 @@ export const useMenu = defineStore("menu", {
         HIDE_SIDEBAR() {
             this.sideBarCollapse = false;
         },
-
+        SET_SIDEBARCOLLAPSE(ishide: boolean) {
+            this.sideBarCollapse = ishide;
+        },
         getMenuData() {
             this.menuList = menuList_MockData;
             return this.menuList;
